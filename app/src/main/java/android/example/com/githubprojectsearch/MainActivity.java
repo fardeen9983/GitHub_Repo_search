@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private EditText queryProjects;
     private ListView projectList;
     private List<GitRepo> repos = null;
-    private ArrayAdapter<String> projectAdapter;
+    private GitRepoAdapter repoAdapter;
     private final String BASE_QUERY = "https://api.github.com/search/repositories";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 return false;
             }
         });
-        //projectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, repos);
-        projectList.setAdapter(projectAdapter);
     }
 
     private void populateList(){
@@ -61,15 +59,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<ArrayList<GitRepo>> onCreateLoader(int id, Bundle args) {
-
-        return null;
+        return new GitRepoLoader(this,args.getString("url"));
     }
 
     @Override
     public void onLoadFinished(Loader<ArrayList<GitRepo>> loader, ArrayList<GitRepo> data) {
         repos = data;
-        //projectAdapter = new ArrayAdapter<GitRepo>(this,null,repos);
-        projectList.setAdapter(projectAdapter);
+        repoAdapter = new GitRepoAdapter(this,repos);
+        projectList.setAdapter(repoAdapter);
     }
 
     @Override

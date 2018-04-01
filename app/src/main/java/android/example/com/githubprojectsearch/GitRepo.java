@@ -14,9 +14,6 @@ public class GitRepo {
         this.avatar = avatar;
     }
 
-    public GitRepo() {
-    }
-
     public String getUrl() {
         return url;
     }
@@ -31,5 +28,21 @@ public class GitRepo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

@@ -48,7 +48,7 @@ public class GitRepoLoader extends AsyncTaskLoader<ArrayList<GitRepo>> {
                 JSONArray items = root.optJSONArray("items");
                 for (int i = 0; i < items.length(); i++) {
                     JSONObject item = items.optJSONObject(i);
-                    gitRepos.add(new GitRepo(item.optString("html_url"), item.optString("tetros")
+                    gitRepos.add(new GitRepo(item.optString("html_url"), item.optString("name")
                             , item.optJSONObject("owner").optString("login")
                             , item.optJSONObject("owner").optString("avatar_url")));
                 }
